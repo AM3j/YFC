@@ -5,7 +5,7 @@ st.markdown("For Time Series Analysis. *Where data meets time*")
 
 
 # When clicked the user will send to desired page
-st.page_link("pages/Economic_Indicators_of_KSA.py", label="Economic Indicators of the Kingdom of Saudi Arabia (KSA)", icon="📊",
+st.page_link("pages/Indicators_of_KSA.py", label="Indicators of the Kingdom of Saudi Arabia (KSA)", icon="📊",
             width='content', help="In progress")
 
 st.subheader("Upcoming Analysis:")

@@ -3,8 +3,8 @@ import pandas as pd
 import altair as alt
 
 
-st.title("Economic Indicators of KSA")
-st.text("This page presents forecasts for several key economic indicators in Saudi Arabia."
+st.title("Indicators of KSA")
+st.text("This page presents forecasts for several key indicators in Saudi Arabia."
         " data for additional indicators is available and will be added soon.")
 
 @st.cache_data
@@ -14,7 +14,7 @@ def load_data(path):
     return df
 
 
-# Simulate ggplot style from matloplib
+# Simulate ggplot style from matplotlib
 @alt.theme.register('ggplot_custom', enable=True)
 def ggplot_custom():
     return alt.theme.ThemeConfig({
