@@ -163,7 +163,7 @@ with st.container(border=True):
 
         st.altair_chart(plot_series_altair(gdp_perC, preds_gdp_perC,
                                            xlabel='Year', ylabel='GDP Per Capita $',
-                                           title='GDP Per Capita'))
+                                           title='GDP Per Capita'), use_container_width=True)
 
     with tab2:
         # Real GDP Per Capita Dataset
@@ -172,7 +172,8 @@ with st.container(border=True):
 
         st.altair_chart(plot_series_altair(real_gdp_perC, real_preds_gdp_perC,
                                            xlabel="Year", ylabel="GDP Per Capita $",
-                                           title='Real GDP Per Capita (Chain-linked, 2023=100)'))
+                                           title='Real GDP Per Capita (Chain-linked, 2023=100)'),
+                                           use_container_width=True)
 
 
 st.divider()
