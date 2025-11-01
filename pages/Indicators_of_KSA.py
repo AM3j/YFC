@@ -5,7 +5,7 @@ import altair as alt
 
 st.title("Indicators of KSA")
 st.text("This page presents forecasts for several key indicators in Saudi Arabia."
-        " data for additional indicators is available and will be added soon.")
+        "Other indicators will be added soon.")
 
 @st.cache_data
 def load_data(path):
