@@ -61,7 +61,7 @@ def plot_series_altair(df, preds, xlabel="Date", ylabel="y", title=None):
                         scale=alt.Scale(domain=["Actual"], range=["black"]),
                         legend=alt.Legend(title="")),
         tooltip=[
-            alt.Tooltip('year:N', title=xlabel),
+            alt.Tooltip('ds:T', title=xlabel),
             alt.Tooltip('y:Q', title=ylabel, format='.2f')
         ]
     )
@@ -76,7 +76,7 @@ def plot_series_altair(df, preds, xlabel="Date", ylabel="y", title=None):
         color=alt.Color('category:N',
                         scale=alt.Scale(domain=["Prediction"], range=["#ff4800"]),
                         legend=alt.Legend(title="")),
-        tooltip=[alt.Tooltip('year:N', title=xlabel),
+        tooltip=[alt.Tooltip('ds:T', title=xlabel),
                  alt.Tooltip('model:Q', title='Prediction', format='.2f'),
                  alt.Tooltip('model-lo-95:Q', title='Lower 95%', format='.2f'),
                  alt.Tooltip('model-lo-80:Q', title='Lower 80%', format='.2f'),
@@ -199,6 +199,15 @@ with st.container(border=True):
     st.altair_chart(plot_series_altair(oil_price, preds_oil_price,
                                        xlabel="Month [1M]", ylabel="Price $",
                                        title="Oil Price"), use_container_width=True)
+st.markdown(
+    """
+Since 2000, the oil prices have shown an interesting **seasonal tendency** in which the following months tend to be bullish:
+
+- Feb  
+- Apr  
+- Jun  
+"""
+)
 
 st.divider()
 
