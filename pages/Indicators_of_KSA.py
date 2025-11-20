@@ -87,13 +87,13 @@ def plot_series_altair(df, preds, xlabel="Date", ylabel="y", title=None):
 
     # 95 prediction interval
     band_95 = alt.Chart(preds).transform_calculate(
-        category='"95% Prediction Interval"'
+        category='"95%"'
     ).mark_area(opacity=0.4).encode(
         x='ds:T',
         y='model-lo-95:Q',
         y2='model-hi-95:Q',
         color=alt.Color('category:N',
-                        scale=alt.Scale(domain=["95% Prediction Interval"],
+                        scale=alt.Scale(domain=["95%"],
                                         range=["#ffaa00"]),
                         legend=alt.Legend(title="Legend")),
         tooltip=[]
@@ -101,13 +101,13 @@ def plot_series_altair(df, preds, xlabel="Date", ylabel="y", title=None):
 
     # 80 prediction interval
     band_80 = alt.Chart(preds).transform_calculate(
-        category='"80% Prediction Interval"'
+        category='"80%"'
     ).mark_area(opacity=0.4).encode(
         x='ds:T',
         y='model-lo-80:Q',
         y2='model-hi-80:Q',
         color=alt.Color('category:N',
-                        scale=alt.Scale(domain=["80% Prediction Interval"],
+                        scale=alt.Scale(domain=["80%"],
                                         range=["#ff6d00"]),
                         legend=alt.Legend(title="")),
         tooltip=[]
@@ -178,6 +178,41 @@ with st.container(border=True):
 
 st.divider()
 
+# CPI
+cpi = load_data("data/cpi.pkl")
+preds_cpi = load_data("data/preds_cpi.pkl")
+
+# Container to contain cpi
+with st.container(border=True):
+    st.altair_chart(plot_series_altair(cpi, preds_cpi,
+                                       xlabel="Month [1M]", ylabel="CPI %",
+                                       title="CPI"), use_container_width=True)
+    
+st.divider()
+
+# Oil Price
+oil_price = load_data("data/oil_price.pkl")
+preds_oil_price = load_data("data/preds_oil_price.pkl")
+
+# Container to contain oil price
+with st.container(border=True):
+    st.altair_chart(plot_series_altair(oil_price, preds_oil_price,
+                                       xlabel="Month [1M]", ylabel="Price $",
+                                       title="Oil Price"), use_container_width=True)
+
+st.divider()
+
+# Oil Production
+oil_production = load_data("data/oil_production.pkl")
+preds_oil_production = load_data("data/preds_oil_production.pkl")
+
+# Container to contain oil production
+with st.container(border=True):
+    st.altair_chart(plot_series_altair(oil_production, preds_oil_production,
+                                       xlabel="Year [1Y]", ylabel="Barrels Per Day (Millions)",
+                                       title="Crude Oil Production"), use_container_width=True)
+st.divider()
+
 # Population
 # Population dataset
 preds_pop = load_data("data/preds_population.pkl")
@@ -188,5 +223,6 @@ with st.container(border=True):
     st.altair_chart(plot_series_altair(population, preds_pop,
                                        xlabel="Year", ylabel="Population (Millions)",
                                        title="Population"), use_container_width=True)
+
 
 
